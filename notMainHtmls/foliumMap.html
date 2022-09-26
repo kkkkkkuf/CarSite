@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+  <script>
+    L_NO_TOUCH = false
+    L_DISABLE_3D = false
+  </script>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <style>
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="../index.css" />
+  <meta
+    name="viewport"
+    content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <style>
+    #map_c5417ad564274d0f8330672e9e5f9b88 {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      left: 0%;
+      top: 0%;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-img"></div>
+
+  <!-- скопировано из https://itchief.ru/bootstrap/navbar-v4 -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-lg-3 navbar-container bg-light">
+        <!-- Вертикальное меню -->
+        <nav class="navbar navbar-expand-md navbar-light">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar">
+            <!-- Пункты вертикального меню -->
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html">Наша программа</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="carCatalog.html">Каталог автомобилей</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="carsSelection.html">Подбор автомобиля</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="author.html">Автор</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="foliumMap.html">Наши объекты</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="col-md-8 col-lg-9 content-container" style="background-color: #696de628">
+        <div class="folium-map" id="map_c5417ad564274d0f8330672e9e5f9b88"></div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  var map_c5417ad564274d0f8330672e9e5f9b88 = L.map("map_c5417ad564274d0f8330672e9e5f9b88", {
+    center: [55.792188074305784, 49.12204671065028],
+    crs: L.CRS.EPSG3857,
+    zoom: 12,
+    zoomControl: true,
+    preferCanvas: false,
+  })
+
+  var tile_layer_e51eb13c4f6e47c5ac3caa9b3b940b7f = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      'Data by \u0026copy; \u003ca href="http://openstreetmap.org"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href="http://www.openstreetmap.org/copyright"\u003eODbL\u003c/a\u003e.',
+    detectRetina: false,
+    maxNativeZoom: 18,
+    maxZoom: 18,
+    minZoom: 0,
+    noWrap: false,
+    opacity: 1,
+    subdomains: "abc",
+    tms: false,
+  }).addTo(map_c5417ad564274d0f8330672e9e5f9b88)
+
+  var circle_marker_b8703d01679a494d95d35582a9a16c55 = L.circleMarker([55.76703189437153, 49.127220114078426], {
+    bubblingMouseEvents: true,
+    color: "black",
+    dashArray: null,
+    dashOffset: null,
+    fill: "black",
+    fillColor: "black",
+    fillOpacity: 0.2,
+    fillRule: "evenodd",
+    lineCap: "round",
+    lineJoin: "round",
+    opacity: 1.0,
+    radius: 8,
+    stroke: true,
+    weight: 3,
+  }).addTo(map_c5417ad564274d0f8330672e9e5f9b88)
+
+  var popup_fc98341c3b74478fb0fd523a566d0329 = L.popup({ maxWidth: "100%" })
+
+  var html_caa54832d8824e4da0ca0a9b598fc62b = $(
+    `<div id="html_caa54832d8824e4da0ca0a9b598fc62b" style="width: 100.0%; height: 100.0%;">Салон KIA Motors</div>`
+  )[0]
+  popup_fc98341c3b74478fb0fd523a566d0329.setContent(html_caa54832d8824e4da0ca0a9b598fc62b)
+
+  circle_marker_b8703d01679a494d95d35582a9a16c55.bindPopup(popup_fc98341c3b74478fb0fd523a566d0329)
+
+  var circle_marker_cb2973db08f9442983800f5953ba08f6 = L.circleMarker([55.76423127297638, 49.15863414477174], {
+    bubblingMouseEvents: true,
+    color: "black",
+    dashArray: null,
+    dashOffset: null,
+    fill: "black",
+    fillColor: "black",
+    fillOpacity: 0.2,
+    fillRule: "evenodd",
+    lineCap: "round",
+    lineJoin: "round",
+    opacity: 1.0,
+    radius: 8,
+    stroke: true,
+    weight: 3,
+  }).addTo(map_c5417ad564274d0f8330672e9e5f9b88)
+
+  var popup_2cacb618a2b24d6d9d58a481d999cdd9 = L.popup({ maxWidth: "100%" })
+
+  var html_96c2b21c2b424fdaae3cca7298819f31 = $(
+    `<div id="html_96c2b21c2b424fdaae3cca7298819f31" style="width: 100.0%; height: 100.0%;">Volkswagen. ТрансТехСервис</div>`
+  )[0]
+  popup_2cacb618a2b24d6d9d58a481d999cdd9.setContent(html_96c2b21c2b424fdaae3cca7298819f31)
+
+  circle_marker_cb2973db08f9442983800f5953ba08f6.bindPopup(popup_2cacb618a2b24d6d9d58a481d999cdd9)
+
+  var circle_marker_cb2973db08f9442983800f5953ba08f6 = L.circleMarker([55.778001736667505, 49.14418942867425], {
+      bubblingMouseEvents: true,
+      color: "black",
+      dashArray: null,
+      dashOffset: null,
+      fill: "black",
+      fillColor: "black",
+      fillOpacity: 0.2,
+      fillRule: "evenodd",
+      lineCap: "round",
+      lineJoin: "round",
+      opacity: 1.0,
+      radius: 8,
+      stroke: true,
+      weight: 3,
+    }).addTo(map_c5417ad564274d0f8330672e9e5f9b88)
+
+    var popup_2cacb618a2b24d6d9d58a481d999cdd9 = L.popup({ maxWidth: "100%" })
+
+    var html_96c2b21c2b424fdaae3cca7298819f31 = $(
+      `<div id="html_96c2b21c2b424fdaae3cca7298819f31" style="width: 100.0%; height: 100.0%;">BMW.ТрансТехСервис</div>`
+    )[0]
+    popup_2cacb618a2b24d6d9d58a481d999cdd9.setContent(html_96c2b21c2b424fdaae3cca7298819f31)
+
+    circle_marker_cb2973db08f9442983800f5953ba08f6.bindPopup(popup_2cacb618a2b24d6d9d58a481d999cdd9)
+
+
+</script>
